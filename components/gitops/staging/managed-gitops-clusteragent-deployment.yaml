@@ -32,6 +32,8 @@ spec:
         - --health-probe-bind-address=:8081
         - --metrics-bind-address=127.0.0.1:8080
         - --leader-elect
+        command:
+        - gitops-service-cluster-agent
         env:
           - name: ARGO_CD_NAMESPACE
             value: gitops-service-argocd
