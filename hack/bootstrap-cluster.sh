@@ -45,16 +45,7 @@ echo
 echo "Add Role/RoleBindings for OpenShift GitOps:"
 kubectl apply --kustomize $ROOT/openshift-gitops/cluster-rbac
 
-echo
-echo "Setting Cluster Mode: ${MODE:-Upstream}"
-case $MODE in
-    ""|"upstream")
-        kubectl apply -f $ROOT/argo-cd-apps/app-of-apps/all-applications-staging.yaml ;;
-    "development")
-        $ROOT/hack/development-mode.sh ;;
-    "preview")
-        $ROOT/hack/preview.sh ;;
-esac
+kubectl apply -f $ROOT/argo-cd-apps/app-of-apps/all-applications-staging.yaml
 
 ARGO_CD_ROUTE=$(kubectl get \
                  -n openshift-gitops \
